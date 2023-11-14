@@ -1,24 +1,34 @@
-﻿namespace TestForBankProject
+﻿using System.Runtime.Intrinsics.X86;
+
+namespace TestForBankProject
 {
     internal class Program
     {
         static void Main(string[] args)
+
+          
         {
-
-
-            RunApp();
+            User user1 = new User(1234,1234);
+            //User user2 = new User(3333, 123);
+            //Admin admin = new Admin();
+              
+            RunApp(user1.SecurityNumber, user1.Password);
+            Console.WriteLine();
+            //RunApp(admin.Username, admin.Password);
+            //Console.WriteLine();
+            //RunApp(user2.SecurityNumber, user2.Password);
 
         }
-        public static void RunApp()
+        public static void RunApp(int usernameInput, int passwordInput)
         {
             Console.WriteLine("Välkommen till inloggningen!");
-            string LoginOK = "adminPassed";
-            if (TryLogin() == "adminPassed")
+            
+            if (TryLogin(usernameInput,passwordInput) == "adminPassed")
             {
                 Console.WriteLine("Inloggning lyckades för admin!");
                 // Här lägger vi in admins vägar till åtgärder.
             }
-            else if (TryLogin() == "customerPassed")
+            else if (TryLogin(usernameInput, passwordInput) == "customerPassed")
             {
                 Console.WriteLine("Inloggningen lyckades för customer");
                 //Här kan vi lägga in customers alla val sen
@@ -48,29 +58,33 @@
             }
             return userInput;
         }
-        static string TryLogin()
+        static string TryLogin(int securityNumber, int userPassword)
         {
             int maxAttempts = 3;
-            string adminUsername = "admin"; string adminPassword = "admin123";
-            string customerUsername = "customer"; string customerPassword = "customer123";
 
-            for (int attempt = 1; attempt <= maxAttempts; attempt++)
+            int adminUsername = 0000; int adminPassword = 9999;
+
+            
+
+            for (int attempt = 0; attempt <= maxAttempts; attempt++)
             {
                 Console.Write($"Ange användarnamn: ");
-                string username = Console.ReadLine();
+                int username = GetInputNumber();
 
                 Console.Write($"Ange lösenord: ");
-                string password = Console.ReadLine();
+                int password = GetInputNumber();
 
                 if (username == adminUsername && password == adminPassword)
                 {
                     return "adminPassed";
+                    break;
 
 
                 }
-                else if (username == customerUsername && password == customerPassword)
+                if (username == securityNumber && password == userPassword)
                 {
                     return "customerPassed";
+                    break;
                 }
                 else
                 {

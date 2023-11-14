@@ -8,13 +8,13 @@ namespace TestForBankProject
 {
     internal class Admin
     {
-        public string Username { get; }
-        public string Password { get; }
+        public int Username { get; }
+        public int Password { get; }
 
         public Admin()
         {
-            Username = "0000";
-            Password = "admin";
+            Username = 0000;
+            Password = 9999;
         }
 
     }

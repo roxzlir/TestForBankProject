@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestForBankProject
 {
-    public class Person
+    internal class BankOwner
     {
 
     }

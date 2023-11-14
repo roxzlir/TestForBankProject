@@ -8,11 +8,11 @@ namespace TestForBankProject
 {
     internal class User
     { 
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public User(string username, string password)
+        public int SecurityNumber { get; set; }
+        public int Password { get; set; }
+        public User(int securityNumber, int password)
         {
-            Username = username + "a";
+            SecurityNumber = securityNumber;
             Password = password;
         }
     }
